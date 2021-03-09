@@ -1,6 +1,9 @@
 language: python
 python:
     - "2.7"
+arch:
+    - amd64
+    - ppc64le
 notifications:
     irc:
         - "chat.freenode.net#unary"
@@ -12,6 +15,12 @@ install:
     - pip install tox
     - pip install coveralls
 script:
-    - python setup.py test
+    # 2.6 not supported on ppc64le. Hence running py27 and oy34 separately
+    - |
+      if [[ "$TRAVIS_CPU_ARCH" != "ppc64le" ]]; then
+       python setup.py test
+      else
+       tox -e py27
+       tox -e py34
 after_success:
     - coveralls
