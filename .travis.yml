@@ -16,7 +16,6 @@ matrix:
      - python: 2.7
        env: TOXENV=py27
        arch: ppc64le
-       dist: bionic
        addons:
           apt:
             update: true
@@ -29,7 +28,6 @@ matrix:
      - python: 3.4
        env: TOXENV=py34
        arch: ppc64le
-       dist: bionic
 notifications:
     irc:
         - "chat.freenode.net#unary"
