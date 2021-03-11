@@ -1,18 +1,14 @@
 language: python
 python:
     - "2.7"
-arch:
-    - amd64
-    - ppc64le
-
 matrix:
   include:
-  # 2.6 and 3.4 not available in the default env. Hence creating separate jobs
-     - python: 2.6
-       env: TOXENV=py26
-       dist: trusty
+  # 2.6 fails during pip install coveralls. 
+  # Not including it
      - python: 2.7
        env: TOXENV=py27
+  # 3.4 not available in the default env. 
+  # Hence creating separate job
      - python: 3.4
        env: TOXENV=py34
  # Power jobs
@@ -20,6 +16,7 @@ matrix:
      - python: 2.7
        env: TOXENV=py27
        arch: ppc64le
+       dist: bionic
        addons:
           apt:
             update: true
@@ -28,20 +25,24 @@ matrix:
              - build-essential 
              - libssl-dev 
              - libffi-dev
+             - python2-dev
      - python: 3.4
        env: TOXENV=py34
        arch: ppc64le
+       dist: bionic
 notifications:
     irc:
         - "chat.freenode.net#unary"
     email:
         - "admin@unary.ca"
 env:
+   global:
     - PYTHONPATH=./
     
 install:
     - pip install tox
     - pip install coveralls
-script: tox
+script:
+    - tox
 after_success:
     - coveralls
