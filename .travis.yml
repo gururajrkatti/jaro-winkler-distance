@@ -25,7 +25,7 @@ matrix:
              - build-essential 
              - libssl-dev 
              - libffi-dev
-             - python2-dev
+             - python-dev
      - python: 3.4
        env: TOXENV=py34
        arch: ppc64le
