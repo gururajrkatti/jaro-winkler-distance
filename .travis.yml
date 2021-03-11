@@ -13,7 +13,8 @@ matrix:
        env: TOXENV=py34
  # Power jobs
   # 2.6 not supported on ppc64le. Not including it
-     - python: 2.7
+  # Using subversion same as amd64 to fix crypto error
+     - python: 2.7.15
        env: TOXENV=py27
        arch: ppc64le
        addons:
