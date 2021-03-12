@@ -17,6 +17,7 @@ matrix:
      - python: 2.7
        env: TOXENV=py27
        arch: ppc64le
+       dist: bionic
        addons:
           apt:
             update: true
